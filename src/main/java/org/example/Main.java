@@ -15,12 +15,12 @@ public class Main {
             int ch = sc.nextInt();
 
             switch (ch) {
-                case 1 -> BankAcc();
-                case 2 -> BasicShape();
-                case 3 -> Credit();
-                case 4 -> Data();
-                case 5 -> Point();
-                case 6 -> Student();
+                case 1 -> bankAcc();
+                case 2 -> basicShape();
+                case 3 ->credit();
+                case 4 -> data();
+                case 5 -> point();
+                case 6 -> student();
                 default->{
                     sc.close();
                     l.info("Enter Correct Option");
@@ -29,7 +29,7 @@ public class Main {
             }
         }
     }
-    static void BankAcc() {
+    static void bankAcc() {
         int amount;
         String holderName = null;
         int accountNumber = 0;
@@ -68,14 +68,14 @@ public class Main {
                     l.info(e);
                 }
                 default -> {
-                    System.out.println("Closing");
+                    l.info("Closing");
                     return;
                 }
 
             }
         }
     }
-    static void BasicShape() {
+    static void basicShape() {
 
         double radius;
         double length;
@@ -132,7 +132,7 @@ public class Main {
             l.info("Perimeter is" + s1.getPerimeter());
         }
     }
-    static void Credit(){
+    static void credit(){
 
         l.info("Enter the credit card name:");
         String name = sc.next();
@@ -161,7 +161,7 @@ public class Main {
         String e=""+c1.compare(c2);
         l.info(e);
     }
-    static void Data() throws SQLException {
+    static void data() throws SQLException {
 
         l.info("Enter the Database url");
         String url=sc.next();
@@ -186,7 +186,7 @@ public class Main {
         }
     }
 
-    static void Point(){
+    static void point(){
 
         int x=0;
         int y = 0;
@@ -217,7 +217,7 @@ public class Main {
         l.info(e);
     }
 
-    static void Student(){
+    static void student(){
             int gPA=0;
             String studentName = null;
             char gradelevel = 0;
