@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.*;
 import java.sql.*;
 import java.util.*;
 import java.util.logging.*;
@@ -8,10 +9,10 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     static Logger l = Logger.getLogger("com.api.jar");
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, FileNotFoundException {
 
         while (true) {
-            l.info("Enter your choice\n1.Bank Account Management\n2.Basic Shape\n3.Credit Card Cloning\n4.Database Connection\n5.Point Cloning\n6.Student Management\n");
+            l.info("Enter your choice\n1.Bank Account Management\n2.Basic Shape\n3.Credit Card Cloning\n4.Database Connection\n5.Point Cloning\n6.Student Management\n7.Frequency of words in File\n8.Tic-Tac-Toe\n9.Student Management using DS\n10.Calculator\n11.Contacts Management");
             int ch = sc.nextInt();
 
             switch (ch) {
@@ -21,6 +22,11 @@ public class Main {
                 case 4 -> data();
                 case 5 -> point();
                 case 6 -> student();
+                case 7 -> files();
+                case 8 -> ticTacToe();
+                case 9 -> studentTest();
+                case 10 -> calcTest();
+                case 11 -> contactList();
                 default -> {
                     sc.close();
                     l.info("Enter Correct Option");
@@ -157,6 +163,8 @@ public class Main {
             c1 = (Card) c.clone();
         } catch (CloneNotSupportedException e) {
             l.log(Level.INFO, () -> " " + e);
+        } finally{
+            l.info("Cloned Successfully");
         }
         Card c2 = new Card(name1, number1, date1);
 
@@ -215,6 +223,8 @@ public class Main {
             p1 = (Points) p.clone();
         } catch (CloneNotSupportedException e) {
             l.log(Level.INFO, () -> " " + e);
+        } finally{
+            l.info("Cloned Successfully");
         }
         assert p1 != null;
         String e = p1.equals(x1, y1);
@@ -255,6 +265,234 @@ public class Main {
                 }
             }
 
+        }
+    }
+    private static void files() throws FileNotFoundException {
+        String path=""+"C:\\Users\\Tringapps-user4\\Documents\\Paragraph.txt";
+
+        Logger l=Logger.getLogger("com.api.jar");
+        HashMap<String,Integer> map = new HashMap<>();
+
+        File file = new File(path);
+        Scanner sc1 = new Scanner(file);
+        String word;
+
+        while(sc1.hasNext())
+        {
+            word = sc1.next();
+            if(map.containsKey(word))
+            {
+                int count = map.get(word) + 1;
+                map.put(word,count);
+            }
+            else
+            {
+                map.put(word, 1);
+            }
+        }
+
+        sc1.close();
+        l.log(Level.INFO,()->"The values in files are: "+ map);
+
+        List<Map.Entry<String, Integer>> sorted = map.entrySet().stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).toList();
+
+        l.log(Level.INFO,()->"After Sorting the values in the file: "+ sorted);
+    }
+    private static void ticTacToe(){
+        int x;
+        int y;
+
+        Logger l = Logger.getLogger("com.api.jar");
+        Scanner sc = new Scanner(System.in);
+
+        // l.info("Enter the dimensions");
+        int size = 3;
+
+        Game g = new Game(size);
+        Game g1= g;
+
+        l.info("Board");
+        g.printBoard(size);
+        int stop=1;
+        String t=g.tie(size);
+
+        while (stop==1) {
+            l.info("Enter the position Player 1");
+            x = sc.nextInt();
+            y = sc.nextInt();
+            if (check(x,y,size)) {
+                g.set(x, y, "X");
+            }
+
+            g.printBoard(size);
+
+            if(g.win(g.board, size).equals("X")){
+                l.info("Player 1 wins");
+                stop=0;
+                break;
+            }
+
+            l.info("Enter the position Player 2");
+            x = sc.nextInt();
+            y = sc.nextInt();
+            if (check(x,y,size)) {
+                g1.set(x, y, "O");
+            }
+
+            g.printBoard(size);
+
+            if(g.win(g.board, size).equals("O")){
+                l.info("Player 2 wins");
+                stop=0;
+
+            }
+            if(t.equals("tie")){
+                l.info("Match Draw");
+                stop=0;
+            }
+        }
+    }
+    static boolean check(int x, int y, int size){
+        return (x >= 0 && y >= 0) || (x < size && y < size);
+    }
+    private static void studentTest(){
+        String id;
+        String name;
+        double gpa;
+        int i;
+
+        String format = " %2s | %-10s | %7s ";
+
+        Scanner sc = new Scanner(System.in);
+        Logger l = Logger.getLogger("com.api.jar");
+
+        l.info("Enter the number of students");
+        int numOfStudent = sc.nextInt();
+
+        LinkedList<StudentDS> studentList = new LinkedList<>();
+
+        for (i = 0; i < numOfStudent; i++) {
+            l.log(Level.INFO, () -> "Enter the Student ID ");
+            id = sc.next();
+            l.log(Level.INFO, () -> "Enter the Student Name ");
+            name = sc.next();
+            l.log(Level.INFO, () -> "Enter the Student GPA ");
+            gpa = sc.nextDouble();
+            studentList.add(new StudentDS(id, name, gpa));
+        }
+
+        l.info("Before Sorting");
+
+        for (i = 0; i < studentList.size(); i++) {
+            String s1 = String.format(format, "ID: " + studentList.get(i).getId(), "Name: " + studentList.get(i).getName(), "GPA: " + studentList.get(i).getGPA());
+            l.info(s1);
+        }
+
+        studentList.sort((o1, o2) -> Double.compare(o2.getGPA(), o1.getGPA()));
+
+        l.info("After Sorting");
+
+        for (i = 0; i < studentList.size(); i++) {
+            String s1 = String.format(format, "ID: " + studentList.get(i).getId(), "Name: " + studentList.get(i).getName(), "GPA: " + studentList.get(i).getGPA());
+            l.info(s1);
+        }
+    }
+    private static void calcTest(){
+
+        int a;
+        int b;
+        int ch;
+
+        Calculator c = null;
+
+        String v1="Enter first number\n";
+        String v2="Enter second number\n";
+
+        while(true)
+        {
+            l.info("\n1.Addition\n2.Subtraction\n3.Multiplication\n4.Division\nEnter your choice\n");
+            ch=sc.nextInt();
+            switch (ch) {
+                case 1 -> {
+                    c = new Addition();
+                    l.info(v1);
+                    a = sc.nextInt();
+                    l.info(v2);
+                    b = sc.nextInt();
+                    c.set(a, b);
+                }
+                case 2 -> {
+                    c = new Subtraction();
+                    l.info(v1);
+                    a = sc.nextInt();
+                    l.info(v2);
+                    b = sc.nextInt();
+                    c.set(a, b);
+                }
+                case 3 -> {
+                    c = new Multiplication();
+                    l.info(v1);
+                    a = sc.nextInt();
+                    l.info(v2);
+                    b = sc.nextInt();
+                    c.set(a, b);
+                }
+                case 4 -> {
+                    c = new Division();
+                    l.info(v1);
+                    a = sc.nextInt();
+                    l.info(v2);
+                    b = sc.nextInt();
+                    c.set(a, b);
+                }
+                default -> {
+                    l.info("Invalid Input\n");
+                    sc.close();
+                    System.exit(0);
+                }
+            }
+            Calculator finalC = c;
+            l.log(Level.INFO, () -> "Result: " + finalC.calculate(finalC.getA(), finalC.getB()));
+        }
+    }
+    private static void contactList(){
+        int ch;
+        Scanner sc = new Scanner(System.in);
+        Contactsops c = new Contactsops();
+
+        Logger l = Logger.getLogger("com.api.jar");
+
+        while (true) {
+            l.info("Enter your Choice\n1. Add contacts\n2.Remove Contact\n3.Search Contact\n4.Print Contacts");
+            ch = sc.nextInt();
+
+            switch (ch) {
+                case 1 -> {
+                    l.info("Enter the name");
+                    String s1 = sc.next();
+                    l.info("Enter the number of contact ");
+                    String s2 = sc.next();
+                    l.info("Enter the email");
+                    String s3 = sc.next();
+                    c.addElement(s1, s2, s3);
+                }
+                case 2 -> {
+                    l.info("Enter the number to remove ");
+                    String s2 = sc.next();
+                    c.deleteElement(s2);
+                }
+                case 3 -> {
+                    l.info("Enter the number to search ");
+                    String s2 = sc.next();
+                    c.searchElement(s2);
+                }
+                case 4 -> c.printElements();
+                default -> {
+                    sc.close();
+                    System.exit(0);
+                }
+            }
         }
     }
 }
