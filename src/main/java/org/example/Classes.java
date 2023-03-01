@@ -10,6 +10,9 @@ import java.util.logging.Logger;
 class Classes {
     static Scanner sc = new Scanner(System.in);
     static Logger l = Logger.getLogger("com.api.jar");
+    private Classes(){
+        throw new IllegalStateException("Invalid");
+    }
 
     static void bankAcc() {
         int amount;
