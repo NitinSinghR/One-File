@@ -50,7 +50,7 @@ public class Classes {
                     l.info(e);
                 }
                 default -> {
-                    l.info("Closing");
+                    l.info("Closing the Bank Account Management");
                     return;
                 }
 
@@ -235,7 +235,7 @@ public class Classes {
                 }
                 case 2 -> l.info(s1.getDetails());
                 default -> {
-                    l.info("Closing");
+                    l.info("Closing the Student Management");
                     return;
                 }
             }
@@ -452,7 +452,7 @@ public class Classes {
                 }
                 case 4 -> c.printElements();
                 default -> {
-                    l.info("Closing");
+                    l.info("Closing the Contact Management");
                     return;
                 }
             }
