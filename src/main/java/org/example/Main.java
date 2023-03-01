@@ -302,11 +302,6 @@ public class Main {
     private static void ticTacToe(){
         int x;
         int y;
-
-        Logger l = Logger.getLogger("com.api.jar");
-        Scanner sc = new Scanner(System.in);
-
-        // l.info("Enter the dimensions");
         int size = 3;
 
         Game g = new Game(size);
@@ -363,9 +358,6 @@ public class Main {
         int i;
 
         String format = " %2s | %-10s | %7s ";
-
-        Scanner sc = new Scanner(System.in);
-        Logger l = Logger.getLogger("com.api.jar");
 
         l.info("Enter the number of students");
         int numOfStudent = sc.nextInt();
@@ -460,8 +452,6 @@ public class Main {
         int ch;
         Scanner sc = new Scanner(System.in);
         Contactsops c = new Contactsops();
-
-        Logger l = Logger.getLogger("com.api.jar");
 
         while (true) {
             l.info("Enter your Choice\n1. Add contacts\n2.Remove Contact\n3.Search Contact\n4.Print Contacts");

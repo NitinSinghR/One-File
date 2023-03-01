@@ -26,10 +26,9 @@ class Game {
     void printBoard(int size) {
         for (i = 0; i < size; i++) {
             for (j = 0; j < size; j++) {
-                // l.log(Level.INFO, () -> board[i][j] + " ");
-                System.out.print( board[i][j] + " ");
+                l.log(Level.INFO, () -> board[i][j] + " ");
             }
-            System.out.print("\n");
+
         }
     }
 
