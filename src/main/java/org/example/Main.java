@@ -5,8 +5,8 @@ import java.util.*;
 import java.util.logging.*;
 
 public class Main {
-    static Scanner sc=new Scanner(System.in);
-    static Logger l=Logger.getLogger("com.api.jar");
+    static Scanner sc = new Scanner(System.in);
+    static Logger l = Logger.getLogger("com.api.jar");
 
     public static void main(String[] args) throws SQLException {
 
@@ -21,7 +21,7 @@ public class Main {
                 case 4 -> data();
                 case 5 -> point();
                 case 6 -> student();
-                default->{
+                default -> {
                     sc.close();
                     l.info("Enter Correct Option");
                     System.exit(0);
@@ -29,6 +29,7 @@ public class Main {
             }
         }
     }
+
     private static void bankAcc() {
         int amount;
         String holderName = null;
@@ -75,6 +76,7 @@ public class Main {
             }
         }
     }
+
     private static void basicShape() {
 
         double radius;
@@ -94,13 +96,13 @@ public class Main {
             try {
                 switch (ch4) {
                     case 1 -> {
-                        type="circle";
+                        type = "circle";
                         l.info("Enter the radius\n");
                         radius = sc.nextDouble();
                         s1 = new Shape(type, radius);
                     }
                     case 2 -> {
-                        type="rectangle";
+                        type = "rectangle";
                         l.info("Enter the length\n");
                         length = sc.nextInt();
                         l.info("Enter the width\n");
@@ -108,7 +110,7 @@ public class Main {
                         s1 = new Shape(type, length, width);
                     }
                     case 3 -> {
-                        type="triangle";
+                        type = "triangle";
                         l.info("Enter the length of a\n");
                         a = sc.nextDouble();
                         l.info("Enter the length of b\n");
@@ -124,57 +126,59 @@ public class Main {
                         return;
                     }
                 }
-            }catch(InputMismatchException e){
-                    l.log(Level.INFO, () -> " " + e);
-                }
+            } catch (InputMismatchException e) {
+                l.log(Level.INFO, () -> " " + e);
+            }
             assert s1 != null;
             l.info("Area is " + s1.getArea());
             l.info("Perimeter is" + s1.getPerimeter());
         }
     }
-    private static void credit(){
+
+    private static void credit() {
 
         l.info("Enter the credit card name:");
         String name = sc.next();
         l.info("Enter the credit card number:");
         String number = sc.next();
         l.info("enter the expiration date");
-        String date=sc.next();
+        String date = sc.next();
 
         l.info("Enter the credit card name:");
         String name1 = sc.next();
         l.info("Enter the credit card number:");
         String number1 = sc.next();
         l.info("enter the expiration date");
-        String date1=sc.next();
+        String date1 = sc.next();
 
-        Card c=new Card(name,number,date);
+        Card c = new Card(name, number, date);
         Card c1 = null;
         try {
             c1 = (Card) c.clone();
-        }catch(CloneNotSupportedException e){
-            l.log(Level.INFO,()->" "+e);
+        } catch (CloneNotSupportedException e) {
+            l.log(Level.INFO, () -> " " + e);
         }
-        Card c2=new Card(name1,number1,date1);
+        Card c2 = new Card(name1, number1, date1);
 
         assert c1 != null;
-        String e=""+c1.compare(c2);
+        String e = "" + c1.compare(c2);
         l.info(e);
     }
+
     private static void data() throws SQLException {
 
         l.info("Enter the Database url");
-        String url=sc.next();
+        String url = sc.next();
         l.info("Enter the username");
-        String user=sc.next();
+        String user = sc.next();
         l.info("Enter the Password");
-        String pass=sc.next();
+        String pass = sc.next();
 
-        Database t1=Database.getInstance();
+        Database t1 = Database.getInstance();
 
-        while(true){
+        while (true) {
             l.info("1.Create Connection\n2.Close Connection\n");
-            int ch2=sc.nextInt();
+            int ch2 = sc.nextInt();
             switch (ch2) {
                 case 1 -> t1.connect(url, user, pass);
                 case 2 -> t1.closeconnection();
@@ -186,12 +190,12 @@ public class Main {
         }
     }
 
-    private static void point(){
+    private static void point() {
 
-        int x=0;
+        int x = 0;
         int y = 0;
-        int x1=0;
-        int y1=0;
+        int x1 = 0;
+        int y1 = 0;
         try {
             l.info("Enter the x value:");
             x = sc.nextInt();
@@ -202,55 +206,55 @@ public class Main {
             x1 = sc.nextInt();
             l.info("Enter the y value:");
             y1 = sc.nextInt();
-        }catch(InputMismatchException e){
-            l.log(Level.INFO,()->" "+e);
+        } catch (InputMismatchException e) {
+            l.log(Level.INFO, () -> " " + e);
         }
         Points p = new Points(x, y);
-        Points p1=null;
+        Points p1 = null;
         try {
             p1 = (Points) p.clone();
-        }catch(CloneNotSupportedException e){
-            l.log(Level.INFO,()->" "+e);
+        } catch (CloneNotSupportedException e) {
+            l.log(Level.INFO, () -> " " + e);
         }
         assert p1 != null;
-        String e=p1.equals(x1,y1);
+        String e = p1.equals(x1, y1);
         l.info(e);
     }
 
-    private static void student(){
-            int gPA=0;
-            String studentName = null;
-            char gradelevel = 0;
+    private static void student() {
+        int gPA = 0;
+        String studentName = null;
+        char gradelevel = 0;
 
-            try{
-                l.info("Enter the Student's Name:");
-                studentName = sc.next();
-                l.info("Enter the Student's GPA :");
-                gPA = sc.nextInt();
-                l.info("Enter the GradeLevel of the student:");
-                gradelevel = sc.next().charAt(0);
-            }catch(InputMismatchException e){
-                l.log(Level.INFO,()->" "+e);
-            }
+        try {
+            l.info("Enter the Student's Name:");
+            studentName = sc.next();
+            l.info("Enter the Student's GPA :");
+            gPA = sc.nextInt();
+            l.info("Enter the GradeLevel of the student:");
+            gradelevel = sc.next().charAt(0);
+        } catch (InputMismatchException e) {
+            l.log(Level.INFO, () -> " " + e);
+        }
 
-            Student s1 = new Student(studentName, gPA, gradelevel);
+        Student s1 = new Student(studentName, gPA, gradelevel);
 
-            while(true) {
-                l.info("choose a option\n1.Update GPA \n 2.Details \n");
-                int ch3 = sc.nextInt();
-                switch (ch3) {
-                    case 1 -> {
-                        l.info("Enter the Updated GPA:\n");
-                        int update = sc.nextInt();
-                        s1.updateGPA(update);
-                    }
-                    case 2 -> l.info(s1.getDetails());
-                    default -> {
-                        l.info("Closing");
-                        return;
-                    }
+        while (true) {
+            l.info("choose a option\n1.Update GPA \n 2.Details \n");
+            int ch3 = sc.nextInt();
+            switch (ch3) {
+                case 1 -> {
+                    l.info("Enter the Updated GPA:\n");
+                    int update = sc.nextInt();
+                    s1.updateGPA(update);
                 }
-
+                case 2 -> l.info(s1.getDetails());
+                default -> {
+                    l.info("Closing");
+                    return;
+                }
             }
+
+        }
     }
 }

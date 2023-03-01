@@ -3,7 +3,7 @@ package org.example;
 public class Card implements Cloneable{
     private final String name;
     private final String number;
-    private String date;
+    private final String date;
 
     Card(String name, String number, String date) {
         this.name = name;
