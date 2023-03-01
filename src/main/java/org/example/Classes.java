@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Classes {
+class Classes {
     static Scanner sc = new Scanner(System.in);
     static Logger l = Logger.getLogger("com.api.jar");
 
