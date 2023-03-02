@@ -15,8 +15,6 @@ public class Main {
             l.info("Enter your choice\n1.Bank Account Management\n2.Basic Shape\n3.Credit Card Cloning\n4.Database Connection\n5.Point Cloning\n6.Student Management\n7.Frequency of words in File\n8.Tic-Tac-Toe\n9.Student Management using DS\n10.Calculator\n11.Contacts Management\n12.HashSet\n13.TreeMap\n14.HashMap\nAny other number to exit");
             int ch = sc.nextInt();
 
-           // Classes obj=new Classes();
-
             switch (ch) {
                 case 1 -> Classes.bankAcc();
                 case 2 -> Classes.basicShape();

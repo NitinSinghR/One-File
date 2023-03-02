@@ -516,7 +516,7 @@ class Classes {
                     l.info("Enter the element to remove");
                     s = sc.next();
                     set.remove(s);
-                    l.info("Removed the element");
+                    l.info("Removed the element from set");
                 }
                 case 3 -> {
                     String k = String.valueOf(set.size());
@@ -554,7 +554,7 @@ class Classes {
                     l.info("Enter the key to remove");
                     key = sc.nextInt();
                     map.remove(key);
-                    l.info("Removed the element");
+                    l.info("Removed the element from map");
                 }
                 case 3 -> {
                     String k = String.valueOf(map.size());
