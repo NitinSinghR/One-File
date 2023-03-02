@@ -1,16 +1,15 @@
 package org.example;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.sql.SQLException;
+import java.io.*;
+import java.sql.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 class Classes {
     static Scanner sc = new Scanner(System.in);
     static Logger l = Logger.getLogger("com.api.jar");
-    private Classes(){
+
+    private Classes() {
         throw new IllegalStateException("Invalid");
     }
 
@@ -141,7 +140,7 @@ class Classes {
             c1 = (Card) c.clone();
         } catch (CloneNotSupportedException e) {
             l.log(Level.INFO, () -> " " + e);
-        } finally{
+        } finally {
             l.info("Cloned Successfully");
         }
         Card c2 = new Card(name1, number1, date1);
@@ -201,7 +200,7 @@ class Classes {
             p1 = (Points) p.clone();
         } catch (CloneNotSupportedException e) {
             l.log(Level.INFO, () -> " " + e);
-        } finally{
+        } finally {
             l.info("Cloned Successfully");
         }
         assert p1 != null;
@@ -245,91 +244,91 @@ class Classes {
 
         }
     }
-    static void files() throws FileNotFoundException {
-        String path=""+"C:\\Users\\Tringapps-user4\\Documents\\Paragraph.txt";
 
-        Logger l=Logger.getLogger("com.api.jar");
-        HashMap<String,Integer> map = new HashMap<>();
+    static void files() throws FileNotFoundException {
+        String path = "" + "C:\\Users\\Tringapps-user4\\Documents\\Paragraph.txt";
+
+        Logger l = Logger.getLogger("com.api.jar");
+        HashMap<String, Integer> map = new HashMap<>();
 
         File file = new File(path);
         Scanner sc1 = new Scanner(file);
         String word;
 
-        while(sc1.hasNext())
-        {
+        while (sc1.hasNext()) {
             word = sc1.next();
-            if(map.containsKey(word))
-            {
+            if (map.containsKey(word)) {
                 int count = map.get(word) + 1;
-                map.put(word,count);
-            }
-            else
-            {
+                map.put(word, count);
+            } else {
                 map.put(word, 1);
             }
         }
 
         sc1.close();
-        l.log(Level.INFO,()->"The values in files are: "+ map);
+        l.log(Level.INFO, () -> "The values in files are: " + map);
 
         List<Map.Entry<String, Integer>> sorted = map.entrySet().stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).toList();
 
-        l.log(Level.INFO,()->"After Sorting the values in the file: "+ sorted);
+        l.log(Level.INFO, () -> "After Sorting the values in the file: " + sorted);
     }
-    static void ticTacToe(){
+
+    static void ticTacToe() {
         int x;
         int y;
         int size = 3;
 
         Game g = new Game(size);
-        Game g1= g;
+        Game g1 = g;
 
         l.info("Board");
         g.printBoard(size);
-        int stop=1;
-        String t=g.tie(size);
+        int stop = 1;
+        String t = g.tie(size);
 
-        while (stop==1) {
+        while (stop == 1) {
             l.info("Enter the position Player 1");
             x = sc.nextInt();
             y = sc.nextInt();
-            if (check(x,y,size)) {
+            if (check(x, y, size)) {
                 g.set(x, y, "X");
             }
 
             g.printBoard(size);
 
-            if(g.win(g.board, size).equals("X")){
+            if (g.win(g.board, size).equals("X")) {
                 l.info("Player 1 wins");
-                stop=0;
+                stop = 0;
                 break;
             }
 
             l.info("Enter the position Player 2");
             x = sc.nextInt();
             y = sc.nextInt();
-            if (check(x,y,size)) {
+            if (check(x, y, size)) {
                 g1.set(x, y, "O");
             }
 
             g.printBoard(size);
 
-            if(g.win(g.board, size).equals("O")){
+            if (g.win(g.board, size).equals("O")) {
                 l.info("Player 2 wins");
-                stop=0;
+                stop = 0;
 
             }
-            if(t.equals("tie")){
+            if (t.equals("tie")) {
                 l.info("Match Draw");
-                stop=0;
+                stop = 0;
             }
         }
     }
-    static boolean check(int x, int y, int size){
+
+    static boolean check(int x, int y, int size) {
         return (x >= 0 && y >= 0) || (x < size && y < size);
     }
-    static void studentTest(){
+
+    static void studentTest() {
         String id;
         String name;
         double gpa;
@@ -368,7 +367,8 @@ class Classes {
             l.info(s1);
         }
     }
-    static void calcTest(){
+
+    static void calcTest() {
 
         int a;
         int b;
@@ -376,13 +376,12 @@ class Classes {
 
         Calculator c = null;
 
-        String v1="Enter first number\n";
-        String v2="Enter second number\n";
+        String v1 = "Enter first number\n";
+        String v2 = "Enter second number\n";
 
-        while(true)
-        {
+        while (true) {
             l.info("\n1.Addition\n2.Subtraction\n3.Multiplication\n4.Division\nEnter your choice\n");
-            ch=sc.nextInt();
+            ch = sc.nextInt();
             switch (ch) {
                 case 1 -> {
                     c = new Addition();
@@ -425,7 +424,8 @@ class Classes {
             l.log(Level.INFO, () -> "Result: " + finalC.calculate(finalC.getA(), finalC.getB()));
         }
     }
-    static void contactList(){
+
+    static void contactList() {
         int ch;
         Contactsops c = new Contactsops();
 
@@ -456,6 +456,115 @@ class Classes {
                 case 4 -> c.printElements();
                 default -> {
                     l.info("Closing the Contact Management");
+                    return;
+                }
+            }
+        }
+    }
+
+    static void hashSet() {
+        String s;
+        String s2 = "Enter your choice\n1.Add\n2.Print\n3.Size\n4.Remove";
+
+        HashSet<String> set = new HashSet<>();
+
+        while (true) {
+            l.info(s2);
+            int ch = sc.nextInt();
+            switch (ch) {
+                case 1 -> {
+                    l.info("Enter the element to add");
+                    set.add(sc.next());
+                    l.info("Added the element");
+                }
+                case 2 -> {
+                    String s1 = "The values in Set are " + set;
+                    l.info(s1);
+                }
+                case 3 -> {
+                    String k = String.valueOf(set.size());
+                    l.info(k);
+                }
+                case 4 -> {
+                    l.info("Enter the element to remove");
+                    s = sc.next();
+                    set.remove(s);
+                    l.info("Removed the element");
+                }
+                default -> {
+                    return;
+                }
+            }
+        }
+    }
+
+    static void treeSet() {
+        TreeSet<String> set = new TreeSet<>();
+
+        String s;
+        String s2 = "Enter your choice\n1.Add\n2.Remove\n3.size\n4.Print\n";
+        while (true) {
+            l.info(s2);
+            int ch = sc.nextInt();
+            switch (ch) {
+                case 1 -> {
+                    l.info("Enter the element to add");
+                    set.add(sc.next());
+                    l.info("Added the element");
+                }
+                case 2 -> {
+                    l.info("Enter the element to remove");
+                    s = sc.next();
+                    set.remove(s);
+                    l.info("Removed the element");
+                }
+                case 3 -> {
+                    String k = String.valueOf(set.size());
+                    l.info(k);
+                }
+                case 4 -> {
+                    String s1 = "The values in Set are " + set;
+                    l.info(s1);
+                }
+                default -> {
+                    return;
+                }
+            }
+        }
+
+    }
+
+    static void hashMap() {
+        HashMap<Integer, String> map = new HashMap<>();
+        String s;
+        int key;
+        String s2 = "Enter your choice\n1.Add\n2.Remove\n3.size\n4.Print\n";
+        while (true) {
+            l.info(s2);
+            int ch = sc.nextInt();
+            switch (ch) {
+                case 1 -> {
+                    l.info("Enter the value");
+                    s = sc.next();
+                    l.info("Enter the key");
+                    key = sc.nextInt();
+                    map.put(key, s);
+                }
+                case 2 -> {
+                    l.info("Enter the key to remove");
+                    key = sc.nextInt();
+                    map.remove(key);
+                    l.info("Removed the element");
+                }
+                case 3 -> {
+                    String k = String.valueOf(map.size());
+                    l.info(k);
+                }
+                case 4 -> {
+                    String s1 = "The values in Map are " + map;
+                    l.info(s1);
+                }
+                default -> {
                     return;
                 }
             }
